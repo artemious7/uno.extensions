@@ -69,14 +69,10 @@ public class CustomAuthenticationTestBackendCookieHostInit : IHostInitialization
 							.OnLogoutNavigateViewModel<CustomAuthenticationLoginViewModel>(this)
 						)
 
+				.UseHttp((ctx, services) =>
+						services.AddRefitClient<ICustomAuthenticationTestBackendEndpoint>(ctx))
 
-				.ConfigureServices((context, services) =>
-				{
-					services
-							.AddNativeHandler()
 
-							.AddRefitClient<ICustomAuthenticationTestBackendEndpoint>(context);
-				})
 				.Build(enableUnoLogging: true);
 	}
 
